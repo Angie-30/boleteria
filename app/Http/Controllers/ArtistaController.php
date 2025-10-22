@@ -1,9 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Artista;
+use Illuminate\Database\QueryException;
 
 class ArtistaController extends Controller
 {
@@ -21,11 +21,28 @@ class ArtistaController extends Controller
             'ciudad_origen' => 'required'
         ]);
 
-        // Creación del Artista
-        Artista::create($request->all());
+        try {
+            // Verificar si ya existe un artista con los mismos datos
+            $existeArtista = Artista::where('nombre', $request->nombre)
+                ->where('genero_musical', $request->genero_musical)
+                ->where('ciudad_origen', $request->ciudad_origen)
+                ->exists();
 
-        // Redirección a la vista de creación con mensaje de éxito
-        return redirect()->route('artistas.create')
-            ->with('success', 'Artista registrado correctamente');
+            if ($existeArtista) {
+                return redirect()->route('artistas.create')
+                    ->with('error', 'Ya existe un artista con esos datos.');
+            }
+
+            // Creación del Artista
+            Artista::create($request->all());
+
+            // Redirección a la vista de creación con mensaje de éxito
+            return redirect()->route('artistas.create')
+                ->with('success', 'Artista registrado correctamente');
+        } catch (QueryException $e) {
+            // Capturar excepción si la restricción única falla
+            return redirect()->route('artistas.create')
+                ->with('error', 'No se pudo registrar el artista. Es posible que ya exista con esos datos.');
+        }
     }
 }
