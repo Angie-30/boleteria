@@ -9,8 +9,12 @@ use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\IndexController;
 
 // Eventos
+Route::get('/eventos', [EventoController::class, 'index'])->name('eventos.index');
 Route::get('/eventos/crear', [EventoController::class, 'create'])->name('eventos.create');
 Route::post('/eventos', [EventoController::class, 'store'])->name('eventos.store');
+Route::get('/eventos/{evento}', [EventoController::class, 'show'])->name('eventos.show');
+Route::get('/eventos/{evento}/edit', [EventoController::class, 'edit'])->name('eventos.edit');
+Route::put('/eventos/{evento}', [EventoController::class, 'update'])->name('eventos.update');
 
 // Localidades
 Route::get('/localidades/crear', [LocalidadController::class, 'create'])->name('localidades.create');
