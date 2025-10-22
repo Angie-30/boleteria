@@ -15,6 +15,7 @@ class Evento extends Model
         'fecha_inicio',
         'fecha_fin',
         'lugar_id', // Si usas lugares
+        'artistas',
     ];
 
     // Relaciones

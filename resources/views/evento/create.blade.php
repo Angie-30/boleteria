@@ -28,6 +28,20 @@
             <label>Descripción</label>
             <textarea name="descripcion" placeholder="Detalles del evento..." required>{{ old('descripcion') }}</textarea>
 
+            
+            <label>Artista:</label>
+            <select name="artista_id" required>
+                <option value="" disabled selected>Seleccione un artista</option>
+                @foreach ($artistas as $artista)
+                    <option value="{{ $artista->id }}" {{ old('artista_id') == $artista->id ? 'selected' : '' }}>
+                        {{ $artista->nombre }}
+                    </option>
+                @endforeach
+            </select>
+            @error('artista_id')
+                <span class="error">{{ $message }}</span>
+            @enderror
+
             <div class="row">
                 <div class="col">
                     <label>Fecha Inicio</label>
