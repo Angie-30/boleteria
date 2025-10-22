@@ -1,0 +1,126 @@
+ /* ==== ESTILOS GENERALES ==== */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Capa oscura */
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(2px);
+            z-index: 0;
+        }
+
+        /* ==== TÍTULO ==== */
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #ff00cc, #3333ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ==== CONTENEDOR ==== */
+        .eventos-container {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* ==== TARJETA ==== */
+        .evento-card {
+            background: rgba(20, 20, 30, 0.85);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 0 25px rgba(123, 31, 162, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(6px);
+        }
+
+        .evento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
+        }
+
+        /* ==== TITULO EVENTO ==== */
+        .evento-card h2 {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+            color: #00ffff;
+        }
+
+        /* ==== INFO ==== */
+        .evento-card p {
+            margin: 5px 0;
+            font-size: 0.95em;
+            color: #ddd;
+        }
+
+        .evento-card strong {
+            color: #fff;
+        }
+
+        /* ==== SECCIÓN DE BOLETAS ==== */
+        .boletas {
+            margin-top: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            border-radius: 10px;
+        }
+
+        .boletas h4 {
+            margin: 0 0 10px 0;
+            color: #f107a3;
+            font-size: 1.1em;
+        }
+
+        .boleta-item {
+            font-size: 0.9em;
+            margin-bottom: 6px;
+        }
+
+        /* ==== EFECTO DE LUZ ==== */
+        .glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(123, 31, 162, 0.4) 0%, transparent 70%);
+            filter: blur(100px);
+            animation: moveGlow 6s infinite alternate ease-in-out;
+            z-index: 1;
+        }
+
+        @keyframes moveGlow {
+            0% { transform: translate(-100px, -50px); }
+            100% { transform: translate(100px, 100px); }
+        }
+
+        /* ==== RESPONSIVE ==== */
+        @media (max-width: 600px) {
+            .eventos-container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+        }

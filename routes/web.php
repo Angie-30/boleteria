@@ -9,7 +9,7 @@ use App\Http\Controllers\ConsultaController;
 
 // Eventos
 Route::get('/eventos/crear', [EventoController::class, 'create'])->name('eventos.create');
-Route::post('/eventos/crear', [EventoController::class, 'store'])->name('eventos.store');
+Route::post('/eventos', [EventoController::class, 'store'])->name('eventos.store');
 
 // Localidades
 Route::get('/localidades/crear', [LocalidadController::class, 'create'])->name('localidades.create');

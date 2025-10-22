@@ -8,7 +8,10 @@ export default defineConfig({
             input: [
                 'resources/css/app.css', 
                 'resources/js/app.js',
-                'resources/css/evento.css',
+                'resources/css/registro_artis.css',
+                'resources/css/crear_boleta.css',
+                'resources/css/consulta.css',
+                'resources/css/eventos_dispo.css',
             ],
             refresh: true,
         }),

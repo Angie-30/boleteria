@@ -1,0 +1,130 @@
+ 
+         /* ==== ESTILOS GENERALES ==== */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+        }
+
+        /* ==== CAPA OSCURA SOBRE EL FONDO ==== */
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(2px);
+        }
+
+        /* ==== CONTENEDOR DEL FORM ==== */
+        .form-container {
+            position: relative;
+            z-index: 2;
+            background: rgba(20, 20, 30, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(123, 31, 162, 0.5), 0 0 50px rgba(0, 255, 255, 0.2);
+            padding: 40px 50px;
+            width: 100%;
+            max-width: 450px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(6px);
+        }
+
+        .form-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
+        }
+
+        /* ==== TÍTULO ==== */
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            background: linear-gradient(90deg, #ff00cc, #3333ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 25px;
+        }
+
+        /* ==== CAMPOS ==== */
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1em;
+            outline: none;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        input::placeholder {
+            color: #ccc;
+        }
+
+        input:focus {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px #00ffff;
+        }
+
+        /* ==== BOTÓN ==== */
+        button {
+            width: 100%;
+            background: linear-gradient(90deg, #7b2ff7, #f107a3);
+            border: none;
+            color: white;
+            font-size: 1.1em;
+            font-weight: 600;
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #f107a3, #7b2ff7);
+            box-shadow: 0 0 15px rgba(241, 7, 163, 0.7);
+            transform: translateY(-2px);
+        }
+
+        /* ==== EFECTO DE LUZ MOVIÉNDOSE ==== */
+        .glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(123, 31, 162, 0.4) 0%, transparent 70%);
+            filter: blur(100px);
+            animation: moveGlow 6s infinite alternate ease-in-out;
+            z-index: 1;
+        }
+
+        @keyframes moveGlow {
+            0% { transform: translate(-100px, -50px); }
+            100% { transform: translate(100px, 100px); }
+        }
+
+        /* ==== RESPONSIVE ==== */
+        @media (max-width: 500px) {
+            .form-container {
+                padding: 30px 25px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+        }
