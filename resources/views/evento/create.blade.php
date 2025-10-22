@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Crear evento</title>
     @vite(['resources/css/eventos_dispo.css'])
-    <!-- Include SweetAlert2 CDN -->
+    <!-- Include SweetAlert2 cdn -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
