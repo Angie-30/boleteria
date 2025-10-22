@@ -1,79 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Crear Evento</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear evento</title>
+    @vite(['resources/css/eventos_dispo.css'])
 </head>
 <body>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Crear Nuevo Evento</h3>
-                    </div>
-                    <div class="card-body">
-                        
-                        {{-- Mostrar mensajes --}}
-                        @if(session('success'))
-                            <div class="alert alert-success">{{ session('success') }}</div>
-                        @endif
+    <div class="overlay"></div>
 
-                        <form action="#" method="POST">
-                            @csrf
-                            
-                            <div class="mb-3">
-                                <label class="form-label">Nombre</label>
-                                <input type="text" name="nombre" class="form-control @error('nombre') is-invalid @enderror" value="{{ old('nombre') }}">
-                                @error('nombre')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+    <div class="form-container">
+        <h1>🎤 Crear Nuevo Evento</h1>
 
-                            <div class="mb-3">
-                                <label class="form-label">Descripción</label>
-                                <textarea name="descripcion" class="form-control @error('descripcion') is-invalid @enderror">{{ old('descripcion') }}</textarea>
-                                @error('descripcion')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+        {{-- Mostrar mensajes --}}
+        @if(session('success'))
+            <div class="alert-success">{{ session('success') }}</div>
+        @endif
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Fecha Inicio</label>
-                                        <input type="date" name="fecha_inicio" class="form-control @error('fecha_inicio') is-invalid @enderror" value="{{ old('fecha_inicio') }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Hora Inicio</label>
-                                        <input type="time" name="hora_inicio" class="form-control @error('hora_inicio') is-invalid @enderror" value="{{ old('hora_inicio') }}">
-                                    </div>
-                                </div>
-                            </div>
+        <form action="{{ route('eventos.store') }}" method="POST">
+            @csrf
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Fecha Fin</label>
-                                        <input type="date" name="fecha_fin" class="form-control @error('fecha_fin') is-invalid @enderror" value="{{ old('fecha_fin') }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Hora Fin</label>
-                                        <input type="time" name="hora_fin" class="form-control @error('hora_fin') is-invalid @enderror" value="{{ old('hora_fin') }}">
-                                    </div>
-                                </div>
-                            </div>
+            <label>Nombre</label>
+            <input type="text" name="nombre" placeholder="Ej: Tour Karol G" value="{{ old('nombre') }}" required>
 
-                            <button type="submit" class="btn btn-primary">Crear Evento</button>
-                        </form>
-                    </div>
+            <label>Descripción</label>
+            <textarea name="descripcion" placeholder="Detalles del evento..." required>{{ old('descripcion') }}</textarea>
+
+            <div class="row">
+                <div class="col">
+                    <label>Fecha Inicio</label>
+                    <input type="date" name="fecha_inicio" value="{{ old('fecha_inicio') }}" required>
+                </div>
+                <div class="col">
+                    <label>Hora Inicio</label>
+                    <input type="time" name="hora_inicio" value="{{ old('hora_inicio') }}" required>
                 </div>
             </div>
-        </div>
+
+            <div class="row">
+                <div class="col">
+                    <label>Fecha Fin</label>
+                    <input type="date" name="fecha_fin" value="{{ old('fecha_fin') }}" required>
+                </div>
+                <div class="col">
+                    <label>Hora Fin</label>
+                    <input type="time" name="hora_fin" value="{{ old('hora_fin') }}" required>
+                </div>
+            </div>
+
+            <button type="submit">Crear Evento</button>
+        </form>
     </div>
 </body>
 </html>

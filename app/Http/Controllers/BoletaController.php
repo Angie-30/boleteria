@@ -34,7 +34,7 @@ class BoletaController extends Controller
             'cantidad_disponible' => $request->cantidad_total,
         ]);
 
-        return redirect()->return('boletas.create')
-        ->with('success', 'Boleta creada correctamente');
+        return redirect()->route('boletas.create')
+        ->with('success', 'Localidad creada correctamente');
     }
 }

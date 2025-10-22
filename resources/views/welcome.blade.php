@@ -8,6 +8,6 @@
     
 </head>
 <body>
-    <a href="\evento"><button type="submit">Registrar evento</button></a>
+   
 </body>
 </html>

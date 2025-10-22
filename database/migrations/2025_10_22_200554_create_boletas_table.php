@@ -4,30 +4,26 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBoletaEventoLocalidadTable extends Migration
+class CreateBoletasTable extends Migration
 {
     /**
      * Run the migrations.
      */
     public function up()
     {
-        Schema::create('boleta_evento_localidad', function (Blueprint $table) {
+        Schema::create('boletas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('evento_id')->constrained('eventos')->onDelete('cascade');
             $table->foreignId('localidad_id')->constrained('localidades')->onDelete('cascade');
+            $table->decimal('precio', 10, 2);
+            $table->integer('cantidad_total');
+            $table->integer('cantidad_disponible');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down()
     {
-        Schema::table('boletas', function (Blueprint $table) {
-            $table->dropForeign(['evento_id']);
-            $table->dropForeign(['localidad_id']);
-            $table->dropColumn(['evento_id', 'localidad_id']);
-        });
+        Schema::dropIfExists('boletas');
     }
-}
+};

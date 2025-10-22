@@ -6,29 +6,35 @@
     @vite(['resources/css/app.css'])
 </head>
 <body>
-    <h1>Crear Boleta</h1>
-    <form method="POST" action="{{ route('boletas.store') }}">
-        @csrf
-        <label>Evento:</label>
-        <select name="evento_id">
-            @foreach ($eventos as $evento)
-                <option value="{{ $evento->id }}">{{ $evento->nombre }}</option>
-            @endforeach
-        </select><br>
+    <div class="glow"></div>
 
-        <label>Localidad:</label>
-        <select name="localidad_id">
-            @foreach ($localidades as $localidad)
-                <option value="{{ $localidad->id }}">{{ $localidad->nombre }}</option>
-            @endforeach
-        </select><br>
+    <div class="form-container">
+        <h1>Crear Boleta</h1>
+        <form method="POST" action="{{ route('boletas.store') }}">
+            @csrf
 
-        <label>Precio:</label>
-        <input type="number" name="precio" required><br>
-        <label>Cantidad:</label>
-        <input type="number" name="cantidad_total" required><br>
+            <label>Evento:</label>
+            <select name="evento_id" required>
+                @foreach ($eventos as $evento)
+                    <option value="{{ $evento->id }}">{{ $evento->nombre }}</option>
+                @endforeach
+            </select>
 
-        <button type="submit">Guardar</button>
-    </form>
+            <label>Localidad:</label>
+            <select name="localidad_id" required>
+                @foreach ($localidades as $localidad)
+                    <option value="{{ $localidad->id }}">{{ $localidad->nombre }}</option>
+                @endforeach
+            </select>
+
+            <label>Precio:</label>
+            <input type="number" name="precio" placeholder="Ej: 120000" required>
+
+            <label>Cantidad:</label>
+            <input type="number" name="cantidad_total" placeholder="Ej: 500" required>
+
+            <button type="submit">Guardar</button>
+        </form>
+    </div>
 </body>
 </html>

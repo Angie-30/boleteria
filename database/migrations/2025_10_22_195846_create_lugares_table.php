@@ -15,7 +15,7 @@ class CreateLugaresTable extends Migration
             $table->id();
             $table->string('nombre', 100);
             $table->string('direccion', 200)->nullable();
-            #$table->foreignId('municipio_id')->constrained('municipios')->onDelete('cascade');
+            $table->foreignId('municipio_id')->constrained('municipios')->onDelete('cascade');
             $table->timestamps();
         });
     }
