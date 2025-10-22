@@ -15,13 +15,14 @@ class LocalidadController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required'
+            'nombre' => 'required|max:50'
         ]);
 
         Localidad::create([
             'nombre' => $request->nombre
         ]);
 
-        return redirect()->back()->with('success', 'Localidad creada correctamente');
+        return redirect()->route('localidades.create')
+        ->with('success', 'Localidad creada correctamente');
     }
 }

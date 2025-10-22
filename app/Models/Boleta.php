@@ -15,6 +15,8 @@ class Boleta extends Model
         'precio',
         'cantidad_total',
         'cantidad_disponible',
+        'evento_id',
+        'localidad_id',
     ];
 
     public function evento()

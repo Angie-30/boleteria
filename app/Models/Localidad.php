@@ -9,6 +9,7 @@ class Localidad extends Model
 {
     use HasFactory;
 
+    protected $table = 'localidades';
     protected $fillable = ['nombre'];
 
     public function boletas()
