@@ -11,7 +11,7 @@ class CreateComprasTable extends Migration
     {
         Schema::create('compras', function (Blueprint $table) {
             $table->id();
-            #$table->foreignId('usuario_id')->constrained('usuarios')->onDelete('cascade');
+            $table->foreignId('usuario_id')->constrained('usuarios')->onDelete('cascade');
             $table->dateTime('fecha');
             $table->string('metodo_pago')->nullable();
             $table->enum('estado', ['COMPLETADA', 'PENDIENTE', 'CANCELADA'])->default('PENDIENTE');

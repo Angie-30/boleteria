@@ -19,7 +19,7 @@
             <div class="alert-success">{{ session('success') }}</div>
         @endif
 
-        <form action="#" method="POST">
+        <form action="{{ route('eventos.store') }}" method="POST">
             @csrf
 
             <label>Nombre</label>

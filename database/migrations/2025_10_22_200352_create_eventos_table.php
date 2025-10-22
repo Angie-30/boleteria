@@ -17,7 +17,7 @@ class CreateEventosTable extends Migration
             $table->text('descripcion');
             $table->dateTime('fecha_inicio');
             $table->dateTime('fecha_fin');
-            #$table->foreignId('lugar_id')->nullable()->constrained('lugares')->onDelete('set null');
+            $table->foreignId('lugar_id')->nullable()->constrained('lugares')->onDelete('set null');
             $table->timestamps();
         });
     }

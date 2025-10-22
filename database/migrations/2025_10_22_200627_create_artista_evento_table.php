@@ -14,7 +14,7 @@ class CreateArtistaEventoTable extends Migration
     {
         Schema::create('artista_evento', function (Blueprint $table) {
             $table->id();
-            #$table->foreignId('artista_id')->constrained('artistas')->onDelete('cascade');
+            $table->foreignId('artista_id')->constrained('artistas')->onDelete('cascade');
             $table->foreignId('evento_id')->constrained('eventos')->onDelete('cascade');
             $table->timestamps();
 

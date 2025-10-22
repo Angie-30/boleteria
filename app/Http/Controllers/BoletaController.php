@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Evento;
+use App\Models\Localidad;
+use App\Models\Boleta;
 
 class BoletaController extends Controller
 {
-     public function create()
+    public function create()
     {
         return view('boletas.create', [
             'eventos' => Evento::all(),
@@ -31,6 +34,7 @@ class BoletaController extends Controller
             'cantidad_disponible' => $request->cantidad_total,
         ]);
 
-        return redirect()->back()->with('success', 'Boleta creada correctamente');
+        return redirect()->route('boletas.create')
+        ->with('success', 'Localidad creada correctamente');
     }
 }

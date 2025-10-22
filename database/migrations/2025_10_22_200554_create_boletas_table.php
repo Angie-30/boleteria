@@ -13,8 +13,8 @@ class CreateBoletasTable extends Migration
     {
         Schema::create('boletas', function (Blueprint $table) {
             $table->id();
-            #$table->foreignId('evento_id')->constrained('eventos')->onDelete('cascade');
-            #$table->foreignId('localidad_id')->constrained('localidades')->onDelete('cascade');
+            $table->foreignId('evento_id')->constrained('eventos')->onDelete('cascade');
+            $table->foreignId('localidad_id')->constrained('localidades')->onDelete('cascade');
             $table->decimal('precio', 10, 2);
             $table->integer('cantidad_total');
             $table->integer('cantidad_disponible');
