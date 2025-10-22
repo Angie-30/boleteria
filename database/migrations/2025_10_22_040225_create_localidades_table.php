@@ -4,25 +4,22 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateLocalidadesTable extends Migration
 {
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('municipio', function (Blueprint $table) {
+        Schema::create('localidades', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre')->nullable();
+            $table->string('nombre', 50); // VIP, General, etc.
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
-        //
+        Schema::dropIfExists('localidades');
     }
 };
