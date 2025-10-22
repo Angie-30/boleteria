@@ -11,7 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('usuario', function (Blueprint $table) {
+            $table->id();
+            $table->enum('tipo doumento', ['Cedula Ciudadania', 'Cedula extranjeria', 'Pasaporte']);
+            $table->integer('numero_documento');
+            $table->string('nombre');
+            $table->string('apellido');
+            $table->string('correo')->unique();
+            $table->enum('rol', ['Administrador', 'Comprador']);
+            $table->timestamps();
+            
+        });
     }
 
     /**

@@ -11,7 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('evento', function (Blueprint $table) {
+            $table->id();
+            $table->integer('codigo');
+            $table->string('nombre');
+            $table->string('desripcion');
+            $table->date('fecha_inicio');
+            $table->time('hora_inicio');
+            $table->date('fecha_fin');
+            $table->time('hora_fin');
+            $table->timestamps();
+        });
     }
 
     /**

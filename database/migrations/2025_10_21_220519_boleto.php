@@ -11,7 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+         Schema::create('boleto', function (Blueprint $table) {
+            $table->id();
+            $table->integer('valor_boleta')->nullable();
+            $table->integer('cantidad')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**
