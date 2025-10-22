@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    
 </head>
 <body>
-    <a href="\evento"><button type="submit">Registrar evento</button></a>
+    <h1>Evento creado</h1>
 </body>
 </html>
