@@ -6,6 +6,7 @@ use App\Http\Controllers\LocalidadController;
 use App\Http\Controllers\BoletaController;
 use App\Http\Controllers\ArtistaController;
 use App\Http\Controllers\ConsultaController;
+use App\Http\Controllers\AuthController;
 
 // Eventos
 Route::get('/eventos/crear', [EventoController::class, 'create'])->name('eventos.create');
@@ -25,3 +26,7 @@ Route::post('/artistas', [ArtistaController::class, 'store'])->name('artistas.st
 
 // Consulta pública
 Route::get('/consulta-eventos', [ConsultaController::class, 'index'])->name('consulta.index');
+
+//incio
+Route::view('/', 'inicio')->name('inicio');
+Route::post('/login', [AuthController::class, 'login'])->name('login');

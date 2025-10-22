@@ -12,6 +12,7 @@ export default defineConfig({
                 'resources/css/crear_boleta.css',
                 'resources/css/consulta.css',
                 'resources/css/eventos_dispo.css',
+                 'resources/css/localidad.css',
             ],
             refresh: true,
         }),
