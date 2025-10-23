@@ -35,6 +35,8 @@ Route::get('/consulta-eventos', [ConsultaController::class, 'index'])->name('con
 
 //incio
 Route::get('/inicio', [IndexController::class, 'index'])->name('index.inicio');
+Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::get('/search', [IndexController::class, 'search'])->name('search');
 
 
 // Mostrar formulario de login
