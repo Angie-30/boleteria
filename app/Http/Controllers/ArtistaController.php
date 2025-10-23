@@ -45,4 +45,64 @@ class ArtistaController extends Controller
                 ->with('error', 'No se pudo registrar el artista. Es posible que ya exista con esos datos.');
         }
     }
+
+    public function show($id)
+    {
+        try {
+            $artista = Artista::findOrFail($id);
+            return view('artistas.show', compact('artista'));
+        } catch (\Exception $e) {
+            return redirect()->route('artistas.index')
+                ->with('error', 'No se encontró el artista solicitado.');
+        }
+    }
+
+    public function edit($id)
+    {
+        try {
+            $artista = Artista::findOrFail($id);
+            return view('artistas.edit', compact('artista'));
+        } catch (\Exception $e) {
+            return redirect()->route('artistas.index')
+                ->with('error', 'No se encontró el artista solicitado.');
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Validación
+        $request->validate([
+            'nombre' => 'required',
+            'genero_musical' => 'required',
+            'ciudad_origen' => 'required'
+        ]);
+
+        try {
+            $artista = Artista::findOrFail($id);
+
+            // Verificar si ya existe otro artista con los mismos datos
+            $existeArtista = Artista::where('nombre', $request->nombre)
+                ->where('genero_musical', $request->genero_musical)
+                ->where('ciudad_origen', $request->ciudad_origen)
+                ->where('id', '!=', $id)
+                ->exists();
+
+            if ($existeArtista) {
+                return redirect()->route('artistas.edit', $id)
+                    ->with('error', 'Ya existe otro artista con esos datos.');
+            }
+
+            // Actualizar el artista
+            $artista->update($request->all());
+
+            return redirect()->route('artistas.show', $id)
+                ->with('success', 'Artista actualizado correctamente');
+        } catch (QueryException $e) {
+            return redirect()->route('artistas.edit', $id)
+                ->with('error', 'No se pudo actualizar el artista. Es posible que ya exista con esos datos.');
+        } catch (\Exception $e) {
+            return redirect()->route('artistas.edit', $id)
+                ->with('error', 'No se encontró el artista solicitado.');
+        }
+    }
 }
