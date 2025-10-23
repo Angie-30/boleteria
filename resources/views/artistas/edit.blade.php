@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Artista</title>
-    <link rel="stylesheet" href="{{ asset('css/registro_artis.css') }}">
+    @vite(['resources/css/registro_artis.css'])
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-
     <div class="overlay"></div>
 
     <div class="form-container">
@@ -70,12 +69,12 @@
                 @enderror
             </div>
 
-            <button type="submit">Actualizar Artista</button>
+            <button type="submit" class="submit-button">Actualizar Artista</button>
         </form>
 
-        <div class="row">
-            <div class="col">
-                <a href="{{ route('artistas.index') }}" class="btn btn-secondary">Volver</a>
+        <div class="submit-button">
+            <div class="submit-button">
+                <a href="{{ route('artistas.index') }}" class="submit-button">Volver</a>
             </div>
         </div>
     </div>
@@ -126,4 +125,4 @@
         });
     </script>
 </body>
-</html>
+</html> 

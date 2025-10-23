@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Detalles de {{ $evento->nombre }}</title>
+    <title>Detalles del Artista</title>
     @vite(['resources/css/registro_artis.css'])
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -11,7 +11,7 @@
     <div class="glow"></div>
 
     <div class="form-container">
-        <h1>🎭 Detalles del Evento</h1>
+        <h1>🎤 Detalles del Artista</h1>
 
         @if (session('success'))
             <div class="alert alert-success">
@@ -19,51 +19,46 @@
             </div>
         @endif
 
-        <!-- Detalles visuales del evento -->
+        @if (session('error'))
+            <div class="alert alert-error">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        <!-- Detalles visuales del artista -->
         <div class="form-group">
-            <label><strong>Nombre del evento:</strong></label>
-            <p>{{ $evento->nombre }}</p>
+            <label><strong>Nombre:</strong></label>
+            <p>{{ $artista->nombre }}</p>
         </div>
 
         <div class="form-group">
-            <label><strong>Descripción:</strong></label>
-            <p>{{ $evento->descripcion }}</p>
+            <label><strong>Género Musical:</strong></label>
+            <p>{{ $artista->genero_musical }}</p>
         </div>
 
         <div class="form-group">
-            <label><strong>Fecha de inicio:</strong></label>
+            <label><strong>Ciudad de Origen:</strong></label>
+            <p>{{ $artista->ciudad_origen }}</p>
+        </div>
+
+        <div class="form-group">
+            <label><strong>Eventos:</strong></label>
             <p>
-                @if ($evento->fecha_inicio instanceof \Carbon\Carbon)
-                    {{ $evento->fecha_inicio->format('d/m/Y H:i') }}
-                @elseif ($evento->fecha_inicio)
-                    {{ \Carbon\Carbon::parse($evento->fecha_inicio)->format('d/m/Y H:i') }}
+                @if ($artista->eventos->isNotEmpty())
+                    <ul>
+                        @foreach ($artista->eventos as $evento)
+                            <li>{{ $evento->nombre }} ({{ $evento->fecha_inicio ? $evento->fecha_inicio->format('d/m/Y H:i') : 'N/A' }})</li>
+                        @endforeach
+                    </ul>
                 @else
-                    N/A
+                    No hay eventos asociados.
                 @endif
             </p>
-        </div>
-
-        <div class="form-group">
-            <label><strong>Fecha de fin:</strong></label>
-            <p>
-                @if ($evento->fecha_fin instanceof \Carbon\Carbon)
-                    {{ $evento->fecha_fin->format('d/m/Y H:i') }}
-                @elseif ($evento->fecha_fin)
-                    {{ \Carbon\Carbon::parse($evento->fecha_fin)->format('d/m/Y H:i') }}
-                @else
-                    N/A
-                @endif
-            </p>
-        </div>
-
-        <div class="form-group">
-            <label><strong>Artista:</strong></label>
-            <p>{{ $evento->artistas->first()->nombre ?? 'N/A' }}</p>
         </div>
 
         <div class="button-group">
-            <a href="{{ route('eventos.edit', $evento) }}" class="submit-button">Editar</a>
-            <a href="{{ route('eventos.index') }}" class="submit-button" style="background: #555;">Volver</a>
+            <a href="{{ route('artistas.edit', $artista->id) }}" class="submit-button">Editar</a>
+            <a href="{{ route('artistas.index') }}" class="submit-button" style="background: #555;">Volver</a>
         </div>
     </div>
 
