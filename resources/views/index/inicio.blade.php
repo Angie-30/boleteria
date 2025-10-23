@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    @vite(['resources/css/index.css'])
 </head>
 <body>
     <body>
@@ -13,7 +13,7 @@
     <div class="glow"></div>
     <div class="glow cyan"></div>
 
-    <a href="{{ route('logout') }}" class="logout-btn">Cerrar sesión</a>
+    <a href="#" class="logout-btn">Cerrar sesión</a>
 
     <header>
         <h1>🎶 Panel de Boletería</h1>
