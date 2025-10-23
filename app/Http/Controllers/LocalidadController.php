@@ -3,38 +3,77 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Evento;
 use App\Models\Localidad;
-use App\Models\Boleta;
+use Illuminate\Database\QueryException;
 
-class BoletaController extends Controller
+class LocalidadController extends Controller
 {
     public function create()
     {
-        return view('boletas.create', [
-            'eventos' => Evento::all(),
-            'localidades' => Localidad::all()
-        ]);
+        return view('localidades.create');
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'evento_id' => 'required|exists:eventos,id',
-            'localidad_id' => 'required|exists:localidades,id',
-            'precio' => 'required|numeric',
-            'cantidad_total' => 'required|integer',
+            'nombre' => 'required|max:50|unique:localidades,nombre'
         ]);
 
-        Boleta::create([
-            'evento_id' => $request->evento_id,
-            'localidad_id' => $request->localidad_id,
-            'precio' => $request->precio,
-            'cantidad_total' => $request->cantidad_total,
-            'cantidad_disponible' => $request->cantidad_total,
+        try {
+            Localidad::create([
+                'nombre' => $request->nombre
+            ]);
+
+            return redirect()->route('localidades.create')
+                ->with('success', 'Localidad creada correctamente');
+        } catch (QueryException $e) {
+            return redirect()->route('localidades.create')
+                ->with('error', 'No se pudo crear la localidad. Es posible que ya exista una con ese nombre.');
+        }
+    }
+
+    public function show($id)
+    {
+        try {
+            $localidad = Localidad::findOrFail($id);
+            return view('localidades.show', compact('localidad'));
+        } catch (\Exception $e) {
+            return redirect()->route('localidades.index')
+                ->with('error', 'No se encontró la localidad solicitada.');
+        }
+    }
+
+    public function edit($id)
+    {
+        try {
+            $localidad = Localidad::findOrFail($id);
+            return view('localidades.edit', compact('localidad'));
+        } catch (\Exception $e) {
+            return redirect()->route('localidades.index')
+                ->with('error', 'No se encontró la localidad solicitada.');
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nombre' => 'required|max:50|unique:localidades,nombre,' . $id
         ]);
 
-        return redirect()->route('boletas.create')
-        ->with('success', 'Localidad creada correctamente');
+        try {
+            $localidad = Localidad::findOrFail($id);
+            $localidad->update([
+                'nombre' => $request->nombre
+            ]);
+
+            return redirect()->route('localidades.show', $id)
+                ->with('success', 'Localidad actualizada correctamente');
+        } catch (QueryException $e) {
+            return redirect()->route('localidades.edit', $id)
+                ->with('error', 'No se pudo actualizar la localidad. Es posible que ya exista una con ese nombre.');
+        } catch (\Exception $e) {
+            return redirect()->route('localidades.edit', $id)
+                ->with('error', 'No se encontró la localidad solicitada.');
+        }
     }
 }
