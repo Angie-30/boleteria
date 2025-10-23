@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Eventos</title>
+    <title>Lista de Artistas</title>
     <!-- Usa el mismo estilo del formulario -->
     @vite(['resources/css/registro_artis.css'])
     <!-- SweetAlert2 -->
@@ -15,7 +15,7 @@
 
     <!-- Contenedor principal -->
     <div class="form-container">
-        <h1>📋 Lista de Eventos</h1>
+        <h1>🎤 Lista de Artistas</h1>
 
         @if (session('success'))
             <div class="alert alert-success">
@@ -23,54 +23,42 @@
             </div>
         @endif
 
-        <!-- Botón crear nuevo evento -->
-        <a href="{{ route('eventos.create') }}" class="submit-button" style="margin-bottom: 20px; display: inline-block;">
-            ➕ Crear Nuevo Evento
+        @if (session('error'))
+            <div class="alert alert-error">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        <!-- Botón crear nuevo artista -->
+        <a href="{{ route('artistas.create') }}" class="submit-button" style="margin-bottom: 20px; display: inline-block;">
+            ➕ Crear Nuevo Artista
         </a>
 
-        <!-- Tabla de eventos -->
+        <!-- Tabla de artistas -->
         <div class="table-wrapper">
             <table class="styled-table">
                 <thead>
                     <tr>
                         <th>Nombre</th>
-                        <th>Artista</th>
-                        <th>Fecha de Inicio</th>
-                        <th>Hora de Inicio</th>
+                        <th>Género Musical</th>
+                        <th>Ciudad de Origen</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($eventos as $evento)
+                    @forelse ($artistas as $artista)
                         <tr>
-                            <td>{{ $evento->nombre }}</td>
-                            <td>{{ $evento->artistas->first()->nombre ?? 'N/A' }}</td>
+                            <td>{{ $artista->nombre }}</td>
+                            <td>{{ $artista->genero_musical }}</td>
+                            <td>{{ $artista->ciudad_origen }}</td>
                             <td>
-                                @if ($evento->fecha_inicio instanceof \Carbon\Carbon)
-                                    {{ $evento->fecha_inicio->format('d/m/Y') }}
-                                @elseif ($evento->fecha_inicio)
-                                    {{ \Carbon\Carbon::parse($evento->fecha_inicio)->format('d/m/Y') }}
-                                @else
-                                    N/A
-                                @endif
-                            </td>
-                            <td>
-                                @if ($evento->fecha_inicio instanceof \Carbon\Carbon)
-                                    {{ $evento->fecha_inicio->format('H:i') }}
-                                @elseif ($evento->fecha_inicio)
-                                    {{ \Carbon\Carbon::parse($evento->fecha_inicio)->format('H:i') }}
-                                @else
-                                    N/A
-                                @endif
-                            </td>
-                            <td>
-                                <a href="{{ route('eventos.show', $evento) }}" class="btn-action info">Detalles</a>
-                                <a href="{{ route('eventos.edit', $evento) }}" class="btn-action warning">Editar</a>
+                                <a href="{{ route('artistas.show', $artista->id) }}" class="btn-action info">Detalles</a>
+                                <a href="{{ route('artistas.edit', $artista->id) }}" class="btn-action warning">Editar</a>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" style="text-align:center;">No hay eventos creados aún.</td>
+                            <td colspan="4" style="text-align:center;">No hay artistas creados aún.</td>
                         </tr>
                     @endforelse
                 </tbody>

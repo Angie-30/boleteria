@@ -7,6 +7,12 @@ use Illuminate\Database\QueryException;
 
 class ArtistaController extends Controller
 {
+    public function index()
+    {
+        $artistas = Artista::all();
+        return view('artistas.index', compact('artistas'));
+    }
+    
     public function create()
     {
         return view('artistas.create');
@@ -49,7 +55,7 @@ class ArtistaController extends Controller
     public function show($id)
     {
         try {
-            $artista = Artista::findOrFail($id);
+            $artista = Artista::with('eventos')->findOrFail($id);
             return view('artistas.show', compact('artista'));
         } catch (\Exception $e) {
             return redirect()->route('artistas.index')

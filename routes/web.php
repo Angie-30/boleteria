@@ -27,8 +27,11 @@ Route::get('/boletas/crear', [BoletaController::class, 'create'])->name('boletas
 Route::post('/boletas', [BoletaController::class, 'store'])->name('boletas.store');
 
 // Artistas
-Route::get('/artistas/crear', [ArtistaController::class, 'create'])->name('artistas.create');
-Route::post('/artistas', [ArtistaController::class, 'store'])->name('artistas.store');
+Route::get('/artistas/create', [ArtistaController::class, 'create'])->name('artistas.create');
+Route::get('/artistas', [ArtistaController::class, 'index'])->name('artistas.index');
+Route::get('/artistas/{id}', [ArtistaController::class, 'show'])->name('artistas.show');
+Route::get('/artistas/{id}/edit', [ArtistaController::class, 'edit'])->name('artistas.edit');
+Route::put('/artistas/{id}', [ArtistaController::class, 'update'])->name('artistas.update');
 
 // Consulta pública
 Route::get('/consulta-eventos', [ConsultaController::class, 'index'])->name('consulta.index');

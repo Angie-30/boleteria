@@ -18,7 +18,7 @@
         <h1>Registrar Artista</h1>
         
         <!-- Artist registration form -->
-        <form method="POST" action="{{ route('artistas.store') }}">
+        <form method="POST" action="{{ route('artistas.index') }}">
             @csrf
 
             <!-- Nombre field -->
@@ -71,6 +71,7 @@
 
             <!-- Submit button -->
             <button type="submit" class="submit-button">Registrar</button>
+            <a href="{{ route('index.inicio') }}"><button type="submit" class="submit-button">Volver</button></a>
         </form>
     </div>
 
