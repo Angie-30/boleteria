@@ -14,6 +14,9 @@ export default defineConfig({
                 'resources/css/eventos_dispo.css',
                 'resources/css/localidad.css',
                 'resources/css/index.css',
+                'resources/css/index2.css',
+                
+
             ],
             refresh: true,
         }),

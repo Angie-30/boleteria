@@ -128,3 +128,60 @@
                 font-size: 1.6em;
             }
         }
+        /* ==== Tabla moderna estilo formulario ==== */
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+    overflow: hidden;
+    backdrop-filter: blur(6px);
+}
+
+.styled-table thead tr {
+    background: linear-gradient(90deg, #7f5af0, #5ee7df);
+    color: white;
+    text-transform: uppercase;
+}
+
+.styled-table th, .styled-table td {
+    padding: 12px 16px;
+    text-align: center;
+    color: #f0f0f0;
+}
+
+.styled-table tbody tr {
+    transition: background 0.3s;
+}
+
+.styled-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-action {
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-action.info {
+    background: #4dabf7;
+}
+
+.btn-action.warning {
+    background: #ffb84d;
+}
+
+.btn-action:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}

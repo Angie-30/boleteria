@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Eventos</title>
-    @vite(['resources/css/eventos_dispo.css'])
+    @vite(['resources/css/index2.css'])
     <!-- Include SweetAlert2 CDN -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
