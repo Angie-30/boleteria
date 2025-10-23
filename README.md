@@ -11,4 +11,5 @@ npm run build
 
 ## Librerias 
 
+## Libreria para alertas
 npm install sweetalert2
