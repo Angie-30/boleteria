@@ -64,6 +64,13 @@
                 </tbody>
             </table>
         </div>
+
+        <!-- Botón Volver -->
+        <div class="row">
+            <div class="col">
+                <a href="{{ url('/') }}" class="btn btn-secondary">Volver</a>
+            </div>
+        </div>
     </div>
 
     <!-- SweetAlert2 mensajes -->

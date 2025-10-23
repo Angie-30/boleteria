@@ -162,7 +162,7 @@
         <div class="card">
             <h2>🎤 Registrar Artista</h2>
             <p>Agrega nuevos artistas a la base de datos con su género musical y ciudad.</p>
-            <a href="{{ route('artistas.create') }}">Ir al formulario</a>
+            <a href="{{ route('artistas.index') }}">Ver artistas</a>
         </div>
 
         <div class="card">

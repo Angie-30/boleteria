@@ -71,7 +71,11 @@
 
             <!-- Submit button -->
             <button type="submit" class="submit-button">Registrar</button>
-            <a href="{{ route('index.inicio') }}"><button type="submit" class="submit-button">Volver</button></a>
+            <div class="submit-button">
+            <div class="submit-button">
+                <a href="{{ route('artistas.index') }}" class="submit-button">Volver</a>
+            </div>
+        </div>
         </form>
     </div>
 
